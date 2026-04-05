@@ -5,5 +5,8 @@ spring:
 usuario:
   url: localhost:8080/usuario
 
+agendador-tarefas:
+  url: localhost:8081/tarefas
+
 server:
   port: 8083

@@ -1,4 +1,4 @@
-package com.alexandre.bffagendador_tarefas.business.dto;
+package com.alexandre.bffagendador_tarefas.business.dto.out;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class EnderecoDTO {
+public class EnderecoDTOResponse {
 
     private Long id;
     private String rua;

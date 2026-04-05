@@ -1,4 +1,4 @@
-package com.alexandre.bffagendador_tarefas.business.dto;
+package com.alexandre.bffagendador_tarefas.business.dto.in;
 
 //import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TelefoneDTO {
+public class TelefoneDTORequest {
 
-    private Long id;
 
 //    @Column(name = "numero",length = 10)
     private String numero;
