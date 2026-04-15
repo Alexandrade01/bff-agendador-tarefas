@@ -44,7 +44,7 @@ public class TarefasController {
     @ApiResponse(responseCode = "200", description = "Tarefas encontradas com sucesso")
     @ApiResponse(responseCode = "401", description = "Token de autenticação inválido ou ausente")
     @ApiResponse(responseCode = "500", description = "Erro interno de servidor")
-    public ResponseEntity<List<TarefasDTOResponse>> buscaListaDeTarefasPorPeriodo(
+    public ResponseEntity<List<TarefasDTOResponse>> buscaTarefasAgendadasPorPeriodo(
 
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,

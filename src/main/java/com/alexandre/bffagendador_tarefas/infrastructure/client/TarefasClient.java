@@ -19,7 +19,7 @@ public interface TarefasClient {
                                     @RequestHeader("Authorization") String token);
 
     @GetMapping("eventos")
-    List<TarefasDTOResponse> buscaListaDeTarefasPorPeriodo(
+    List<TarefasDTOResponse> buscaTarefasAgendadasPorPeriodo(
 
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,

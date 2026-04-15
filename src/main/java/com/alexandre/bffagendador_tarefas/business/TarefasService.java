@@ -25,7 +25,7 @@ public class TarefasService {
 
     public List<TarefasDTOResponse> buscaTarefasAgendadasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal, String token) {
 
-        return tarefasClient.buscaListaDeTarefasPorPeriodo(dataInicial,dataFinal,token);
+        return tarefasClient.buscaTarefasAgendadasPorPeriodo(dataInicial,dataFinal,token);
 
     }
 
@@ -41,7 +41,7 @@ public class TarefasService {
 
     }
 
-    public TarefasDTOResponse alteraStatus(StatusNotificacaoEnum status, String id, String token) {
+    public TarefasDTOResponse alteraStatus(StatusNotificacaoEnum status, String id,String token) {
 
       return tarefasClient.alteraStatusNotificacao(status,id,token);
 

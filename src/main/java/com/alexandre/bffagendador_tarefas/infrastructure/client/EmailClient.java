@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "usuario", url = "${usuario.url}")
+@FeignClient(name = "notificacao", url = "${notificacao.url}")
 public interface EmailClient {
 
     //Passamos o response porque esse dto possui o email, campo que necessitamos
+
+    @PostMapping
     void enviarEmail(@RequestBody TarefasDTOResponse dto);
 }
