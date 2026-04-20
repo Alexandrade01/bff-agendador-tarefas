@@ -51,7 +51,7 @@ public class CronService {
 
         listaTarefas.forEach(tarefa -> {
             emailService.enviaEmail(tarefa);
-            tarefasService.alteraStatus(StatusNotificacaoEnum.NOTIFICADO, tarefa.getId(),token);
+            tarefasService.alteraStatus(StatusNotificacaoEnum.NOTIFICADO, tarefa.getId(),tokenUser);
         });
     }
 

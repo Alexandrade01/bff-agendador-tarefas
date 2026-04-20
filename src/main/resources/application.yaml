@@ -4,7 +4,8 @@ spring:
 
 usuario:
   url: localhost:8080/usuario
-
+  email: admin@admin.com
+  senha: 123456
 
 agendador-tarefas:
   url: localhost:8081/tarefas
