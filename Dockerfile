@@ -1,8 +1,13 @@
-FROM amazoncorretto:17-alpine AS build
+FROM gradle:jdk17-corretto AS build
+WORKDIR /app
+COPY . .
+RUN gradle build --no-daemon
+
+FROM amazoncorretto:17-alpine
 
 WORKDIR /app
 
-COPY build/libs/bff-agendador-tarefas-0.0.1-SNAPSHOT.jar /app/bff-agendador-tarefas.jargit
+COPY --from=build /app/build/libs/*SNAPSHOT.jar /app/bff-agendador-tarefas.jar
 
 EXPOSE 8083
 
