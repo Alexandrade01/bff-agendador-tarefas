@@ -16,10 +16,13 @@ import java.util.List;
 @FeignClient(name = "usuario", url = "${usuario.url}")
 public interface UsuarioClient {
 
+    @GetMapping("getByEmail")
+    UsuarioDTOResponse getUsuarioPorEmail(@RequestParam String email,
+                                          @RequestHeader("Authorization") String token);
     @PostMapping
-    UsuarioDTOResponse postUsuario(@RequestBody UsuarioDTORequest usuarioDTO);
+    UsuarioDTOResponse salvaUsuario(@RequestBody UsuarioDTORequest usuarioDTO);
 
-    @PostMapping("login")
+    @PostMapping("/login")
     String login(@RequestBody LoginRequestDTO usuarioDTO);
 
     @PostMapping("/endereco")
@@ -30,9 +33,7 @@ public interface UsuarioClient {
     TelefoneDTOResponse cadastraTelefone(@RequestBody TelefoneDTORequest dto,
                                          @RequestHeader("Authorization") String token);
 
-    @GetMapping("getByEmail")
-    UsuarioDTOResponse getUsuarioPorEmail(@RequestParam String email,
-                                          @RequestHeader("Authorization") String token);
+
 
     @GetMapping("findAll")
     List<UsuarioDTOResponse> findAllUsuario(@RequestHeader("Authorization") String token);
