@@ -21,7 +21,7 @@ public class UsuarioService {
 
     public UsuarioDTOResponse salvaUsuarioDTO(UsuarioDTORequest usuarioDTO){
 
-       return client.postUsuario(usuarioDTO);
+       return client.salvaUsuario(usuarioDTO);
     }
 
     public String loginUsuario(LoginRequestDTO usuarioDTO){
