@@ -35,8 +35,6 @@ public class CronService {
 
         String token = login(criarObjetoRequestDTO());
 
-        String tokenUser = "Bearer".concat(token.substring(7));
-
         log.info("Iniciada a busca de tarefas : "+LocalDateTime.now());
 
         LocalDateTime horaFutura = LocalDateTime.now().plusHours(1);
@@ -45,13 +43,13 @@ public class CronService {
         //Vai buscar todas as tarefas de determinada hora futura
         //se agora é 22h - vai buscar entre 23h e 23h05
         List<TarefasDTOResponse> listaTarefas
-                = tarefasService.buscaTarefasAgendadasPorPeriodo(horaFutura,horaFuturaMaisCinco,tokenUser);
+                = tarefasService.buscaTarefasAgendadasPorPeriodo(horaFutura,horaFuturaMaisCinco,token);
 
         log.info("Tarefas encontradas " + listaTarefas);
 
         listaTarefas.forEach(tarefa -> {
             emailService.enviaEmail(tarefa);
-            tarefasService.alteraStatus(StatusNotificacaoEnum.NOTIFICADO, tarefa.getId(),tokenUser);
+            tarefasService.alteraStatus(StatusNotificacaoEnum.NOTIFICADO, tarefa.getId(),token);
         });
     }
 

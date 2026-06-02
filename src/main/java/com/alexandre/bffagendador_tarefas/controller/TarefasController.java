@@ -39,7 +39,7 @@ public class TarefasController {
 
     }
 
-    @GetMapping("eventos")
+    @GetMapping("/eventos")
     @Operation(summary = "Busca lista de tarefas por Periodo", description = "Busca tarefas cadastradas por periodo")
     @ApiResponse(responseCode = "200", description = "Tarefas encontradas com sucesso")
     @ApiResponse(responseCode = "401", description = "Token de autenticação inválido ou ausente")
@@ -54,11 +54,12 @@ public class TarefasController {
         return ResponseEntity.ok(tarefasService.buscaTarefasAgendadasPorPeriodo(dataInicial, dataFinal,token));
     }
 
-    @GetMapping("todosEventos")
+    @GetMapping
     @Operation(summary = "Busca todas as tarefas do usuário", description = "Retorna a lista completa de tarefas associadas ao e-mail do usuário autenticado")
     @ApiResponse(responseCode = "200", description = "Lista de tarefas retornada com sucesso")
     @ApiResponse(responseCode = "401", description = "Token de autenticação inválido ou ausente")
     @ApiResponse(responseCode = "500", description = "Erro interno de servidor")
+    @ApiResponse(responseCode = "403",description = "Email não encontrado")
     public ResponseEntity<List<TarefasDTOResponse>> buscaTarefasPorEmail(@RequestHeader(name = "Authorization",required = false) String token) {
 
         return ResponseEntity.ok(tarefasService.buscaTarefasPorEmail(token));
@@ -67,9 +68,10 @@ public class TarefasController {
     @DeleteMapping
     @Operation(summary = "Deleta uma tarefa por ID", description = "Remove permanentemente uma tarefa identificada pelo seu ID")
     @ApiResponse(responseCode = "200", description = "Tarefa deletada com sucesso")
-    @ApiResponse(responseCode = "404", description = "Tarefa não encontrada para o ID informado")
+//    @ApiResponse(responseCode = "404", description = "Tarefa não encontrada para o ID informado")
     @ApiResponse(responseCode = "401", description = "Token de autenticação inválido ou ausente")
     @ApiResponse(responseCode = "500", description = "Erro interno de servidor")
+    @ApiResponse(responseCode = "403",description = "Tarefa id não encontrado")
     public ResponseEntity<Void> deletaTarefaPorId(@RequestParam("id") String id, @RequestHeader(name = "Authorization",required = false) String token) {
 
         tarefasService.deletaTarefaPorId(id,token);
@@ -81,9 +83,10 @@ public class TarefasController {
     @PatchMapping
     @Operation(summary = "Altera o status de notificação de uma tarefa", description = "Atualiza o status de notificação de uma tarefa específica identificada pelo seu ID")
     @ApiResponse(responseCode = "200", description = "Status de notificação atualizado com sucesso")
-    @ApiResponse(responseCode = "404", description = "Tarefa não encontrada para o ID informado")
+//    @ApiResponse(responseCode = "404", description = "Tarefa não encontrada para o ID informado")
     @ApiResponse(responseCode = "401", description = "Token de autenticação inválido ou ausente")
     @ApiResponse(responseCode = "500", description = "Erro interno de servidor")
+    @ApiResponse(responseCode = "403",description = "Tarefa id não encontrado")
     public ResponseEntity<TarefasDTOResponse> alteraStatusNotificacao(@RequestParam("status") StatusNotificacaoEnum status,
                                                                       @RequestParam("id") String id,
                                                                       @RequestHeader(name = "Authorization",required = false) String token){
@@ -94,10 +97,12 @@ public class TarefasController {
     @PutMapping
     @Operation(summary = "Atualiza os dados de uma tarefa", description = "Substitui integralmente os dados de uma tarefa existente identificada pelo seu ID")
     @ApiResponse(responseCode = "200", description = "Tarefa atualizada com sucesso")
-    @ApiResponse(responseCode = "404", description = "Tarefa não encontrada para o ID informado")
+//    @ApiResponse(responseCode = "404", description = "Tarefa não encontrada para o ID informado")
     @ApiResponse(responseCode = "401", description = "Token de autenticação inválido ou ausente")
     @ApiResponse(responseCode = "500", description = "Erro interno de servidor")
-    public ResponseEntity<TarefasDTOResponse> updateTarefas(@RequestBody TarefasDTORequest dto, @RequestParam("id") String id,
+    @ApiResponse(responseCode = "403",description = "Tarefa id não encontrado")
+    public ResponseEntity<TarefasDTOResponse> updateTarefas(@RequestBody TarefasDTORequest dto,
+                                                            @RequestParam("id") String id,
                                                             @RequestHeader(name = "Authorization",required = false) String token){
 
         return ResponseEntity.ok(tarefasService.updateTarefas(dto,id,token));

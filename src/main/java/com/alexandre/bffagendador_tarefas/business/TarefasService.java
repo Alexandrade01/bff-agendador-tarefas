@@ -25,7 +25,7 @@ public class TarefasService {
 
     public List<TarefasDTOResponse> buscaTarefasAgendadasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal, String token) {
 
-        return tarefasClient.buscaTarefasAgendadasPorPeriodo(dataInicial,dataFinal,token);
+        return tarefasClient.buscaListaDeTarefasPorPeriodo(dataInicial,dataFinal,token);
 
     }
 
